@@ -38,15 +38,14 @@ public class MyController {
                         (disabledFields.contains("color") && sortBy.compareTo("color") == 0) ||
                         (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)) {
                     sortBy = null;
-                }
-            }
+                } else {
+                    switch (sortBy) {
+                        case "model" -> listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
+                        case "color" -> listCar.sort((o1, o2) -> o1.getColor().toString().compareTo(o2.getColor().toString()));
+                        case "maxSpeed" -> listCar.sort((o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
 
-            if (sortBy.compareTo("model") == 0) {
-                listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
-            } else if (sortBy.compareTo("color") == 0) {
-                listCar.sort((o1, o2) -> o1.getColor().toString().compareTo(o2.getColor().toString()));
-            } else if (sortBy.compareTo("maxSpeed") == 0) {
-                listCar.sort((o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
+                    }
+                }
             }
         }
 
