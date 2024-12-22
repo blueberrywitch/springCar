@@ -32,7 +32,7 @@ public class MyController {
             count = listCar.size();
         }
 
-        if (disabledFields != null) {
+        if (disabledFields != null && sortBy != null) {
             if ((disabledFields.contains("model") && sortBy.compareTo("model") == 0) ||
                     (disabledFields.contains("color") && sortBy.compareTo("color") == 0) ||
                     (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)) {
