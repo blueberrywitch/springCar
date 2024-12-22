@@ -32,14 +32,15 @@ public class MyController {
             count = listCar.size();
         }
 
-        if (disabledFields != null && sortBy != null) {
-            if ((disabledFields.contains("model") && sortBy.compareTo("model") == 0) ||
-                    (disabledFields.contains("color") && sortBy.compareTo("color") == 0) ||
-                    (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)) {
-                sortBy = null;
-            }
-        }
         if (sortBy != null) {
+            if (disabledFields != null) {
+                if ((disabledFields.contains("model") && sortBy.compareTo("model") == 0) ||
+                        (disabledFields.contains("color") && sortBy.compareTo("color") == 0) ||
+                        (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)) {
+                    sortBy = null;
+                }
+            }
+
             if (sortBy.compareTo("model") == 0) {
                 listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
             } else if (sortBy.compareTo("color") == 0) {
