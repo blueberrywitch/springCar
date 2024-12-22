@@ -14,14 +14,14 @@ import lombok.Data;
 @Table(name = "cars")
 public class Car {
 
+    @Id
+    @GeneratedValue(generator = "increment")
+    private Long id;
+
     private String model;
     @Enumerated(EnumType.STRING)
     private Colors color;
     private int maxSpeed;
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    private Long id;
 
     public Car() {
     }
@@ -30,21 +30,5 @@ public class Car {
         this.model = model;
         this.color = color;
         this.maxSpeed = maxSpeed;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public Colors getColor() {
-        return color;
     }
 }
