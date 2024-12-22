@@ -3,8 +3,42 @@
 <head>
     <title>Cars</title>
 </head>
+<title>Cars</title>
+<style>
+
+    th, td {
+        width: 150px;
+        height: 50px;
+        text-align: center;
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse; /* Сокращение границ */
+    }
+</style>
+</head>
 <body>
-<h1>Cars</h1>
-<p th:text="${message}">Статический текст (заменяется на динамический)</p>
+
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+
+            <th th:each="header : ${listheaders}" th:text="${header}"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="car : ${listCar}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.maxSpeed}"></td>
+            <td th:text="${car.color}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

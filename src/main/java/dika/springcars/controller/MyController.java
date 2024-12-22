@@ -1,5 +1,6 @@
-package dika.springcars;
+package dika.springcars.controller;
 
+import dika.springcars.config.SortConfig;
 import dika.springcars.model.Car;
 import dika.springcars.service.CarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,30 +24,32 @@ public class MyController {
     private int maxCar;
 
     @GetMapping("/cars")
-    public String car( @RequestParam(required = false) Integer count, @RequestParam(required = false) String sortBy, Model model) {
+    public String car(@RequestParam(required = false) Integer count, @RequestParam(required = false) String sortBy, Model model) {
+        List<String> headers = List.of("ID", "Model", "Max Speed", "Color");
         List<Car> listCar = carService.listCars();
         List<String> disabledFields = sortConfig.getDisabledFields();
         if (count == null || count >= maxCar) {
             count = listCar.size();
         }
 
-        if (disabledFields != null){
-            if ((disabledFields.contains("model") && sortBy.compareTo("model") == 0)||
-                    (disabledFields.contains("color") && sortBy.compareTo("color") == 0)||
-                    (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)){
+        if (disabledFields != null) {
+            if ((disabledFields.contains("model") && sortBy.compareTo("model") == 0) ||
+                    (disabledFields.contains("color") && sortBy.compareTo("color") == 0) ||
+                    (disabledFields.contains("maxSpeed") && sortBy.compareTo("maxSpeed") == 0)) {
                 sortBy = null;
             }
         }
-        if (sortBy != null){
-            if (sortBy.compareTo("model") == 0){
+        if (sortBy != null) {
+            if (sortBy.compareTo("model") == 0) {
                 listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
-            } else if (sortBy.compareTo("color") == 0){
-                listCar.sort((o1, o2) -> o1.getColor().compareTo(o2.getColor()));
-            } else if (sortBy.compareTo("maxSpeed") == 0){
+            } else if (sortBy.compareTo("color") == 0) {
+                listCar.sort((o1, o2) -> o1.getColor().toString().compareTo(o2.getColor().toString()));
+            } else if (sortBy.compareTo("maxSpeed") == 0) {
                 listCar.sort((o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
             }
         }
 
+        model.addAttribute("listheaders", headers);
         model.addAttribute("listCar", listCar.subList(0, count));
         return "index";
     }

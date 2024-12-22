@@ -1,4 +1,4 @@
-package dika.springcars;
+package dika.springcars.reposirotry;
 
 import dika.springcars.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;

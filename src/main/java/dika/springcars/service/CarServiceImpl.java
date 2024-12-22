@@ -1,15 +1,22 @@
-package dika.springcars;
+package dika.springcars.service;
 
+import dika.springcars.model.Car;
+import dika.springcars.reposirotry.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CarDaoImpl implements CarDao {
+public class CarServiceImpl implements CarService {
+
+
+    private final CarRepository carRepository;
 
     @Autowired
-    private CarRepository carRepository;
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @Override
     public void add(Car car) {
@@ -25,4 +32,5 @@ public class CarDaoImpl implements CarDao {
     public Car findByModel(String model) {
         return carRepository.findByModel(model);
     }
+
 }

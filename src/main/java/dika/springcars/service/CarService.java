@@ -1,8 +1,10 @@
-package dika.springcars;
+package dika.springcars.service;
+
+import dika.springcars.model.Car;
 
 import java.util.List;
 
-public interface CarDao {
+public interface CarService {
     void add(Car car);
 
     List<Car> listCars();

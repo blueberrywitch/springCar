@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: springCars
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cars
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+custom:
+  maxCar: 5
+  table:
+    sorting:
+      disabled-fields:
+        - maxSpeed
