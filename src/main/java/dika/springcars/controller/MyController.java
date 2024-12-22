@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import static java.lang.Math.min;
+
 @Controller
 public class MyController {
     @Autowired
@@ -28,19 +30,16 @@ public class MyController {
         List<String> headers = List.of("ID", "Model", "Max Speed", "Color");
         List<Car> listCar = carService.listCars();
         List<String> disabledFields = sortConfig.getDisabledFields();
-        if (count == null || count >= maxCar) {
+        if (count == null || count >= min(maxCar, listCar.size())) {
             count = listCar.size();
         }
 
-        if (sortBy != null && disabledFields != null) {
-            if (!disabledFields.contains(sortBy)) {
-                switch (sortBy) {
-                    case "model" -> listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
-                    case "color" ->
-                            listCar.sort((o1, o2) -> o1.getColor().toString().compareTo(o2.getColor().toString()));
-                    case "maxSpeed" -> listCar.sort((o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
+        if (sortBy != null && disabledFields != null && (!disabledFields.contains(sortBy))) {
+            switch (sortBy) {
+                case "model" -> listCar.sort((o1, o2) -> o1.getModel().compareTo(o2.getModel()));
+                case "color" -> listCar.sort((o1, o2) -> o1.getColor().toString().compareTo(o2.getColor().toString()));
+                case "maxSpeed" -> listCar.sort((o1, o2) -> o1.getMaxSpeed() - o2.getMaxSpeed());
 
-                }
             }
         }
 
