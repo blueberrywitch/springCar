@@ -16,16 +16,17 @@ public class GetUsers {
     @Value("${url}")
     private String url;
 
-    private IncomeClient incomeClient;
+    private final IncomeClient incomeClient;
 
     @Autowired
     public GetUsers(IncomeClient incomeClient) {
         this.incomeClient = incomeClient;
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         List<User> list = new ArrayList<>();
-        for (Object object :incomeClient.getData(new ParameterizedTypeReference<List<Object>>() {}, url)){
+        for (Object object : incomeClient.getData(new ParameterizedTypeReference<List<Object>>() {
+        }, url)) {
             String IdSalary = ((object.toString()).replaceAll("[a-zA-Zа-яА-Я={}]", ""));
             String[] arr = IdSalary.split(",");
             list.add(new User(Long.parseLong(arr[0]), Integer.parseInt(arr[1].trim()), null));

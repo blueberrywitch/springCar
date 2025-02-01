@@ -15,21 +15,18 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService {
 
-    private final UserRepository userRepository;
     private static final BigDecimal MONTH = BigDecimal.valueOf(6);
     private static final BigDecimal COEFF = BigDecimal.valueOf(0.3);
-
+    private final UserRepository userRepository;
+    @Value("${loan.minSalary}")
+    private int minSalary;
+    @Value("${loan.minCarPrice}")
+    private int minCarPrice;
 
     @Autowired
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    @Value("${loan.minSalary}")
-    private int minSalary;
-
-    @Value("${loan.minCarPrice}")
-    private int minCarPrice;
 
     @Override
     public User getUserById(Long userId) {
@@ -53,13 +50,14 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public BigDecimal getLoanSum(Long id){
+    public BigDecimal getLoanSum(Long id) {
         User user = getUserById(id);
         if (loanApproval(user)) {
             return calculateLoan(user);
         }
         return BigDecimal.ZERO;
     }
+
     private boolean loanApproval(User user) {
         return user.getSalary() >= minSalary ||
                 user.getCar().getPrice() >= minCarPrice;
