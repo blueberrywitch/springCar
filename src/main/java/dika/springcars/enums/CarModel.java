@@ -1,6 +1,6 @@
 package dika.springcars.enums;
 
-public enum Model {
+public enum CarModel {
     Toyota,
     Mercedes,
     BMW,

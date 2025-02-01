@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import java.util.List;
-
 @SpringBootApplication
 @ComponentScan(basePackages = {"dika.springcars", "dika.springbootstarter"})
 public class SpringCarsApplication {
@@ -20,9 +18,9 @@ public class SpringCarsApplication {
 
         UserServiceImp userService = context.getBean(UserServiceImp.class);
         GetUsers getUser = context.getBean(GetUsers.class);
-        List<User> userList = getUser.getUsers();
-        for (User user : userList) {
-            userService.add(new User(user.getId(), user.getSalary(), CreatRandomCar.creationCar()));
+        int[] salaries = getUser.getUsers();
+        for (int salary : salaries) {
+            userService.add(new User(salary, CreatRandomCar.creationCar()));
         }
 
     }
