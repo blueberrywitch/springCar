@@ -14,8 +14,15 @@ spring:
     show-sql: true
 
 custom:
-  maxCar: 5
+  maxCar: 10
   table:
     sorting:
       disabled-fields:
         - maxSpeed
+
+loan:
+  minSalary: 40000
+  minCarPrice: 1000000
+
+url:
+  "https://66055cd12ca9478ea1801f2e.mockapi.io/api/users/income"

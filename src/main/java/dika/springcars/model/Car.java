@@ -8,10 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cars")
 public class Car {
 
@@ -26,12 +30,12 @@ public class Car {
 
     private int maxSpeed;
 
-    public Car() {
-    }
+    private int price;
 
-    public Car(String model, Colors color, int maxSpeed) {
+    public Car(String model, Colors color, int maxSpeed, int price) {
         this.model = model;
         this.color = color;
         this.maxSpeed = maxSpeed;
+        this.price = price;
     }
 }
