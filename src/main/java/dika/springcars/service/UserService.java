@@ -1,6 +1,6 @@
 package dika.springcars.service;
 
-import dika.springcars.exception.MyException;
+import dika.springcars.exception.UserNotFoundException;
 import dika.springcars.model.Car;
 import dika.springcars.model.User;
 
@@ -15,7 +15,7 @@ public interface UserService {
 
     Optional<User> findByCar(Car car);
 
-    User getUserById(Long userId) throws MyException;
+    User getUserById(Long userId) throws UserNotFoundException;
 
-    BigDecimal getLoanSum(Long id) throws MyException;
+    BigDecimal getLoanSum(Long id) throws UserNotFoundException;
 }

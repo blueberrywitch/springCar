@@ -4,7 +4,7 @@ import dika.springcars.enums.CarModel;
 import dika.springcars.enums.Colors;
 import dika.springcars.model.Car;
 
-public class CreatRandomCar {
+public class CreateRandomCar {
     public static Car creationCar() {
         int numberOfColors = GetRandom.getRandomNumber(0, Colors.values().length);
         int numberOfModel = GetRandom.getRandomNumber(0, CarModel.values().length);

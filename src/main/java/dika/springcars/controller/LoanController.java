@@ -1,6 +1,6 @@
 package dika.springcars.controller;
 
-import dika.springcars.exception.MyException;
+import dika.springcars.exception.UserNotFoundException;
 import dika.springcars.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class LoanController {
     }
 
     @GetMapping
-    public BigDecimal getLoan(@RequestParam(required = false) Long userId) throws MyException {
+    public BigDecimal getLoan(@RequestParam(required = false) Long userId) throws UserNotFoundException {
         return userService.getLoanSum(userId);
     }
 }

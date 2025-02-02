@@ -1,12 +1,10 @@
 package dika.springcars.service;
 
-import dika.springcars.exception.MyException;
+import dika.springcars.exception.UserNotFoundException;
 import dika.springcars.model.Car;
 import dika.springcars.model.User;
 import dika.springcars.reposirotry.UserRepository;
 import dika.springcars.starter.GetUsers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,13 +19,12 @@ public class UserServiceImp implements UserService {
 
     private static final BigDecimal MONTH = BigDecimal.valueOf(6);
     private static final BigDecimal COEFF = BigDecimal.valueOf(0.3);
-    private static final Logger log = LoggerFactory.getLogger(UserServiceImp.class);
-    private final UserRepository userRepository;
-    private final GetUsers getUser;
     @Value("${loan.minSalary}")
     private int minSalary;
     @Value("${loan.minCarPrice}")
     private int minCarPrice;
+    private final UserRepository userRepository;
+    private final GetUsers getUser;
 
     @Autowired
     public UserServiceImp(UserRepository userRepository, GetUsers getUser) {
@@ -36,9 +33,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId) throws MyException {
+    public User getUserById(Long userId) throws UserNotFoundException {
         return userRepository.findById(userId).orElseThrow(
-                () -> new MyException("User not found with id: " + userId));
+                () -> new UserNotFoundException("User not found with id: " + userId));
     }
 
     @Override
@@ -57,10 +54,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public BigDecimal getLoanSum(Long id) throws MyException {
+    public BigDecimal getLoanSum(Long id) throws UserNotFoundException {
         User user = getUserById(id);
         int salary = getUser.getUsers(id);
-        log.info("User: " + user + " Salary: " + salary);
         if (loanApproval(user, salary)) {
             return calculateLoan(user, salary);
         }

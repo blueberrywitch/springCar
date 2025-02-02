@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetUsers {
 
-    private final IncomeClient incomeClient;
     @Value("${url}")
     private String url;
+
+    private final IncomeClient incomeClient;
 
     @Autowired
     public GetUsers(IncomeClient incomeClient) {
