@@ -33,7 +33,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId) throws UserNotFoundException {
+    public User getUserById(Long userId) {
         return userRepository.findById(userId).orElseThrow(
                 () -> new UserNotFoundException("User not found with id: " + userId));
     }
@@ -54,7 +54,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public BigDecimal getLoanSum(Long id) throws UserNotFoundException {
+    public BigDecimal getLoanSum(Long id){
         User user = getUserById(id);
         int salary = getUser.getUsers(id);
         if (loanApproval(user, salary)) {

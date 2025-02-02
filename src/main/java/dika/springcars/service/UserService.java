@@ -15,7 +15,7 @@ public interface UserService {
 
     Optional<User> findByCar(Car car);
 
-    User getUserById(Long userId) throws UserNotFoundException;
+    User getUserById(Long userId);
 
-    BigDecimal getLoanSum(Long id) throws UserNotFoundException;
+    BigDecimal getLoanSum(Long id);
 }
