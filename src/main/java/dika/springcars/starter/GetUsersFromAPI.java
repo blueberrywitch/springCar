@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetUsers {
+public class GetUsersFromAPI {
 
     @Value("${url}")
     private String url;
@@ -14,7 +14,7 @@ public class GetUsers {
     private final IncomeClient incomeClient;
 
     @Autowired
-    public GetUsers(IncomeClient incomeClient) {
+    public GetUsersFromAPI(IncomeClient incomeClient) {
         this.incomeClient = incomeClient;
     }
 

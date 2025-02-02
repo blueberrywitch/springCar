@@ -4,7 +4,7 @@ import dika.springcars.exception.UserNotFoundException;
 import dika.springcars.model.Car;
 import dika.springcars.model.User;
 import dika.springcars.reposirotry.UserRepository;
-import dika.springcars.starter.GetUsers;
+import dika.springcars.starter.GetUsersFromAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,10 +24,10 @@ public class UserServiceImp implements UserService {
     @Value("${loan.minCarPrice}")
     private int minCarPrice;
     private final UserRepository userRepository;
-    private final GetUsers getUser;
+    private final GetUsersFromAPI getUser;
 
     @Autowired
-    public UserServiceImp(UserRepository userRepository, GetUsers getUser) {
+    public UserServiceImp(UserRepository userRepository, GetUsersFromAPI getUser) {
         this.userRepository = userRepository;
         this.getUser = getUser;
     }
