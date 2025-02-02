@@ -11,6 +11,6 @@ public class CreatRandomCar {
         return new Car(EnumByIndex.getEnumByIndex(CarModel.class, numberOfModel).toString(),
                 EnumByIndex.getEnumByIndex(Colors.class, numberOfColors),
                 GetRandom.getRandomNumber(120, 230),
-                GetRandom.getRandomNumber(50000, 9000000));
+                GetRandom.getRandomNumber(50000, 3000000));
     }
 }

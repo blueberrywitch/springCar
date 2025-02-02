@@ -17,12 +17,16 @@ public class SpringCarsApplication {
         ApplicationContext context = SpringApplication.run(SpringCarsApplication.class, args);
 
         UserServiceImp userService = context.getBean(UserServiceImp.class);
-        GetUsers getUser = context.getBean(GetUsers.class);
-        int[] salaries = getUser.getUsers();
-        for (int salary : salaries) {
-            userService.add(new User(salary, CreatRandomCar.creationCar()));
-        }
+        userService.add(new User("John", CreatRandomCar.creationCar()));
+        userService.add(new User("Mike", CreatRandomCar.creationCar()));
+        userService.add(new User("Tom", CreatRandomCar.creationCar()));
+        userService.add(new User("Alice", CreatRandomCar.creationCar()));
+        userService.add(new User("Bob", CreatRandomCar.creationCar()));
+        userService.add(new User("Kate", CreatRandomCar.creationCar()));
+        userService.add(new User("Liza", CreatRandomCar.creationCar()));
 
+        GetUsers getUsers = context.getBean(GetUsers.class);
+        System.out.println(getUsers.getUsers(1L));
     }
 
 }

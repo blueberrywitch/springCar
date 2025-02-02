@@ -1,5 +1,6 @@
 package dika.springcars.service;
 
+import dika.springcars.exception.MyException;
 import dika.springcars.model.Car;
 import dika.springcars.model.User;
 
@@ -14,7 +15,7 @@ public interface UserService {
 
     Optional<User> findByCar(Car car);
 
-    User getUserById(Long userId);
+    User getUserById(Long userId) throws MyException;
 
-    BigDecimal getLoanSum(Long id);
+    BigDecimal getLoanSum(Long id) throws MyException;
 }

@@ -27,7 +27,7 @@ public class User {
     private Long id;
 
     @NonNull
-    private int salary;
+    private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     @NonNull
